@@ -1,0 +1,580 @@
+﻿<Window x:Class="Root.PolarCodingStandWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        mc:Ignorable="d"
+        Title="Стенд полярного кодирования" Height="800" Width="1000"
+        ResizeMode="CanMinimize"
+        Background="#FAFAFA">
+    <Grid>
+        <!-- Экран #1 -->
+        <TextBlock x:Name="startMessage" TextAlignment="Center" LineHeight="20" FontSize="24" TextWrapping="Wrap" Margin="99,209,99,309"/>
+        <TextBlock x:Name="author" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" Margin="563,701,10,10"/>
+        <Button x:Name="startButton" Content="Начать" FontSize="24" Margin="410,443,410,261" Click="StartButton_Click"/>
+        <!-- -->
+
+        <!-- Экран #2 -->
+        <TextBlock x:Name="settingModelingParameters_Text" TextWrapping="Wrap" FontSize="24" FontWeight="Bold" TextDecorations="Underline" Margin="10,10,10,725"/>
+
+        <StackPanel x:Name="codingMethod_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="24,64,0,0" Width="385" Height="105">
+            <Label x:Name="codingMethod_Text" FontSize="20"/>
+            <ComboBox x:Name="codingMethod_ComboBox" SelectedIndex="0" IsEnabled="False" VerticalContentAlignment="Center" Height="50" FontSize="18">
+                <ComboBoxItem x:Name="polarCoding_ComboBox_Text"/>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel x:Name="modulationMethod_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="24,174,0,0" Width="385" Height="105">
+            <Label x:Name="modulationMethod_Text" FontSize="20"/>
+            <ComboBox x:Name="modulationMethod_ComboBox" SelectedIndex="0" IsEnabled="False" VerticalContentAlignment="Center" Height="50" FontSize="18">
+                <ComboBoxItem x:Name="eightPSK_ComboBox_Text"/>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel x:Name="noiseExposureMethod_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="24,284,0,0" Width="385" Height="105">
+            <Label x:Name="noiseExposureMethod_Text" FontSize="20"/>
+            <ComboBox x:Name="noiseExposureMethod_ComboBox" SelectedIndex="0" IsEnabled="False" VerticalContentAlignment="Center" Height="50" FontSize="18">
+                <ComboBoxItem x:Name="AWGN_ComboBox_Text"/>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel x:Name="demodulationMethod_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="24,394,0,0" Width="385" Height="105">
+            <Label x:Name="demodulationMethod_Text" FontSize="20"/>
+            <ComboBox x:Name="demodulationMethod_ComboBox" SelectedIndex="0" IsEnabled="False" VerticalContentAlignment="Center" Height="50" FontSize="18">
+                <ComboBoxItem x:Name="VoronoiDiagram_ComboBox_Text"/>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel x:Name="decodingMethod_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="24,504,0,0" Width="385" Height="105">
+            <Label x:Name="decodingMethod_Text" FontSize="20"/>
+            <ComboBox x:Name="decodingMethod_ComboBox" SelectedIndex="1" VerticalContentAlignment="Center" Height="50" FontSize="18">
+                <ComboBoxItem x:Name="directEncoding_ComboBox_Text"/>
+                <ComboBoxItem x:Name="recursiveEncoding_ComboBox_Text"/>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel x:Name="numberOfRuns_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="477,64,0,0" Width="546" Height="105">
+            <Label x:Name="numberOfRuns_Text" FontSize="20"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="544" Height="45">
+                <TextBox x:Name="numberOfRuns_TextBox" Width="182" Height="40" FontSize="18" VerticalContentAlignment="Center" Margin="0,0,0,0" PreviewTextInput="TextBox_PreviewTextInput">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TextBox}">
+                                        <Grid>
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" />
+                                            <TextBlock x:Name="numberOfRuns_watermark" Text="Введите число..." Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed" FontSize="18"/>
+                                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="Text" Value=""/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter TargetName="numberOfRuns_watermark" Property="Visibility" Value="Visible"/>
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <Button x:Name="numberOfRuns_confirmButton" Content="Подтвердить" Width="140" Height="40" Margin="10,0,10,0" FontSize="18" Click="ConfirmButton_numberOfRuns_click"/>
+                <Button x:Name="numberOfRuns_resetButton" Content="Сброс" Width="140" Height="40" Margin="0,0,0,0" FontSize="18" Click="ResetButton_numberOfRuns_click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="40">
+                <TextBlock x:Name="numberOfRuns_validationMessage" Foreground="Red" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+                <TextBlock x:Name="numberOfRuns_resetedMessage" Foreground="Blue" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+                <TextBlock x:Name="numberOfRuns_confirmedMessage" Foreground="Green" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel x:Name="numberOfPackets_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="477,174,0,0" Width="546" Height="105">
+            <Label x:Name="numberOfPackets_Text" FontSize="20"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="544" Height="45">
+                <TextBox x:Name="numberOfPackets_TextBox" Width="182" Height="40" FontSize="18" VerticalContentAlignment="Center" Margin="0,0,0,0" PreviewTextInput="TextBox_PreviewTextInput">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TextBox}">
+                                        <Grid>
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" />
+                                            <TextBlock x:Name="numberOfPackets_watermark" Text="Введите число..." Foreground="Gray" Margin="5,0,0,0" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed"/>
+                                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="Text" Value=""/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter TargetName="numberOfPackets_watermark" Property="Visibility" Value="Visible"/>
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <Button x:Name="numberOfPackets_confirmButton" Content="Подтвердить" Width="140" Height="40" Margin="10,0,10,0" FontSize="18" Click="ConfirmButton_numberOfPackets_click"/>
+                <Button x:Name="numberOfPackets_resetButton" Content="Сброс" Width="140" Height="40" Margin="0,0,0,0" FontSize="18" Click="ResetButton_numberOfPackets_click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="40">
+                <TextBlock x:Name="numberOfPackets_validationMessage" Foreground="Red" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+                <TextBlock x:Name="numberOfPackets_resetedMessage" Foreground="Blue" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+                <TextBlock x:Name="numberOfPackets_confirmedMessage" Foreground="Green" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel x:Name="messageLength_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="477,284,0,0" Width="546" Height="104">
+            <Label x:Name="messageLength_Text" FontSize="20"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="544" Height="45">
+                <TextBox x:Name="messageLength_TextBox" Width="182" Height="40" FontSize="18" VerticalContentAlignment="Center" Margin="0,0,0,0" PreviewTextInput="TextBox_PreviewTextInput">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TextBox}">
+                                        <Grid>
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" />
+                                            <TextBlock x:Name="messageLength_watermark" Text="Введите число 4, 8, 16 или 32..." Foreground="Gray" Margin="5,0,0,0" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed"/>
+                                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="Text" Value=""/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter TargetName="messageLength_watermark" Property="Visibility" Value="Visible"/>
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <Button x:Name="messageLength_confirmButton" Content="Подтвердить" Width="140" Height="40" Margin="10,0,10,0" FontSize="18" Click="ConfirmButton_messageLength_click"/>
+                <Button x:Name="messageLength_resetButton" Content="Сброс" Width="140" Height="40" Margin="0,0,0,0" FontSize="18" Click="ResetButton_messageLength_click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="40">
+                <TextBlock x:Name="messageLength_validationMessage" Foreground="Red" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+                <TextBlock x:Name="messageLength_resetedMessage" Foreground="Blue" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+                <TextBlock x:Name="messageLength_confirmedMessage" Foreground="Green" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel x:Name="firstValueOfNoise_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="477,393,0,0" Width="546" Height="105">
+            <Label x:Name="firstValueOfNoise_Text" FontSize="20"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="544" Height="45">
+                <TextBox x:Name="firstValueOfNoise_TextBox" Width="182" Height="40" FontSize="18" VerticalContentAlignment="Center" Margin="0,0,0,0" PreviewTextInput="TextBox_PreviewTextInput">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TextBox}">
+                                        <Grid>
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" />
+                                            <TextBlock x:Name="firstValueOfNoise_watermark" Text="Введите число..." Foreground="Gray" Margin="5,0,0,0" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed"/>
+                                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="Text" Value=""/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter TargetName="firstValueOfNoise_watermark" Property="Visibility" Value="Visible"/>
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <Button x:Name="firstValueOfNoise_confirmButton" Content="Подтвердить" Width="140" Height="40" Margin="10,0,10,0" FontSize="18" Click="ConfirmButton_firstValueOfNoise_click"/>
+                <Button x:Name="firstValueOfNoise_resetButton" Content="Сброс" Width="140" Height="40" Margin="0,0,0,0" FontSize="18" Click="ResetButton_firstValueOfNoise_click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="40">
+                <TextBlock x:Name="firstValueOfNoise_validationMessage" Foreground="Red" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+                <TextBlock x:Name="firstValueOfNoise_resetedMessage" Foreground="Blue" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+                <TextBlock x:Name="firstValueOfNoise_confirmedMessage" Foreground="Green" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel x:Name="noiseStep_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="477,503,0,0" Width="546" Height="105">
+            <Label x:Name="noiseStep_Text" FontSize="20"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="544" Height="45">
+                <TextBox x:Name="noiseStep_TextBox" Width="182" Height="40" FontSize="18" VerticalContentAlignment="Center" Margin="0,0,0,0" PreviewTextInput="TextBox_PreviewTextInputForNoiseStep">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TextBox}">
+                                        <Grid>
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" />
+                                            <TextBlock x:Name="noiseStep_watermark" Text="Введите число..." Foreground="Gray" Margin="5,0,0,0" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed"/>
+                                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="Text" Value=""/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter TargetName="noiseStep_watermark" Property="Visibility" Value="Visible"/>
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <Button x:Name="noiseStep_confirmButton" Content="Подтвердить" Width="140" Height="40" Margin="10,0,10,0" FontSize="18" Click="ConfirmButton_noiseStep_click"/>
+                <Button x:Name="noiseStep_resetButton" Content="Сброс" Width="140" Height="40" Margin="0,0,0,0" FontSize="18" Click="ResetButton_noiseStep_click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="40">
+                <TextBlock x:Name="noiseStep_validationMessage" Foreground="Red" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+                <TextBlock x:Name="noiseStep_resetedMessage" Foreground="Blue" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+                <TextBlock x:Name="noiseStep_confirmedMessage" Foreground="Green" Margin="0" TextWrapping="Wrap" FontSize="16"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Button x:Name="previousStepButton_screen2" Content="« Назад"  Click="PreviousStepButton_screen2_click" FontSize="20" Margin="24,701,857,23"/>
+        <Button x:Name="nextStepButton_screen2" Content="Далее »"  Click="NextStepButton_screen2_click" FontSize="20" Margin="855,701,24,23"/>
+        <!-- -->
+
+        <!-- Экран #3 -->
+        <StackPanel x:Name="leftSide_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" Width="286" Height="600">
+            <TextBox x:Name="modelRunNumber" VerticalScrollBarVisibility="Auto" Height="250" IsReadOnly="True" FontSize="15"/>
+            <ProgressBar x:Name="numberOfRunsProgressbar" Margin="0,5,0,0" Height="20" VerticalAlignment="Bottom"/>
+            <Button x:Name="startModeling" Margin="0,5,0,0" Click="StartModeling_click" Height="60">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="18">
+            Начать моделирование
+                </TextBlock>
+            </Button>
+            <Button x:Name="stopModeling" Margin="0,5,0,0" Click="StopModeling_click" Height="60">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="18">
+            Остановить моделирование
+                </TextBlock>
+            </Button>
+            <Button x:Name="resetModelingResults" Margin="0,5,0,0" Click="ResetModelingResults_click" Height="60">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="18">
+            Сброс результатов моделирования
+                </TextBlock>
+            </Button>
+            <Button x:Name="showBitErrorPlot" Margin="0,5,0,0" Click="ShowBitErrorPlot_click" Height="60">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14">
+            График отношения вероятности битовой ошибки к отношению сигнал/шум
+                </TextBlock>
+            </Button>
+            <Button x:Name="showVoronoiDiagrams" Margin="0,5,0,0" Click="ShowVoronoiDiagrams_click" Height="60">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+            Отображение областей Вороного
+                </TextBlock>
+            </Button>
+        </StackPanel>
+
+        <Button x:Name="previousStepButton_screen3" Click="PreviousStepButton_screen3_click" FontSize="20" Margin="24,687,704,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        « Вернуться к заданию параметров моделирования
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="manualInputMode" Click="ManualInputMode_click" FontSize="20" Margin="759,10,15,695">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14">
+        Перейти в режим ручного ввода сообщения
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="automaticMode" Click="AutomaticMode_click" FontSize="20" Margin="759,10,15,695">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="14">
+        Вернуться в автоматический режим
+            </TextBlock>
+        </Button>
+
+        <StackPanel x:Name="manualInputMode_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="312,10,0,0" Width="404" Height="183">
+            <Label x:Name="manualInputMode_Text" FontSize="16"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBox x:Name="sentInfoWord_TextBox" Width="182" Height="30" FontSize="16" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0" PreviewTextInput="TextBox_PreviewTextInput_ManualInputMode">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TextBox}">
+                                        <Grid>
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" />
+                                            <TextBlock x:Name="sentInfoWord_watermark" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed"/>
+                                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="Text" Value=""/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter TargetName="sentInfoWord_watermark" Property="Visibility" Value="Visible"/>
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <Button x:Name="sentInfoWord_confirmButton" Content="Подтвердить" Width="100" Height="30" Margin="10" Click="ConfirmButton_sentInfoWord_click"/>
+                <Button x:Name="sentInfoWord_resetButton" Content="Сброс" Width="100" Height="30" Margin="0" Click="ResetButton_sentInfoWord_click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <TextBlock x:Name="sentInfoWord_validationMessage" Foreground="Red" Margin="0" TextWrapping="Wrap"/>
+                <TextBlock x:Name="sentInfoWord_resetedMessage" Foreground="Blue" Margin="0" TextWrapping="Wrap"/>
+                <TextBlock x:Name="sentInfoWord_confirmedMessage" Foreground="Green" Margin="0" TextWrapping="Wrap"/>
+            </StackPanel>
+            <Button x:Name="showSteps" Width="208" Height="62" Margin="0,10,0,0" HorizontalAlignment="Left" Click="ShowSteps_click">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="15">
+            Отобразить этапы преобразования сообщения
+                </TextBlock>
+            </Button>
+        </StackPanel>
+
+        <StackPanel x:Name="step0_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="312,10,0,0" Width="663" Height="661">
+            <TextBlock x:Name="informationMessage_step0" FontWeight="Bold" FontSize="22" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,0,400,0"/>
+            <TextBlock x:Name="_BhattacharyaParameters_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,30,0,0"/>
+            <TextBlock x:Name="sortedIndices_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,15,0,0"/>
+            <TextBlock x:Name="definitionOfInfoAndFrozenBits" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,15,0,0"/>
+            <TextBlock x:Name="BhattacharyaParameters_frozenBitsIndices_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,15,0,0"/>
+            <TextBlock x:Name="BhattacharyaParameters_infoBitsIndices_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,15,0,0"/>
+        </StackPanel>
+
+        <Button x:Name="nextStepButton_step0" Click="NextStepButton_step0_click" FontSize="20" Margin="841,687,24,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        Следующий шаг »
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="help_step0" Click="Help_step0_click" Margin="633,10,246,695">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="18">
+        Справка
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="previousStepButton_step05" Click="PreviousStepButton_step05_click" FontSize="20" Margin="308,687,557,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        « Предыдущий шаг
+            </TextBlock>
+        </Button>
+
+        <StackPanel x:Name="step05_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="312,10,0,0" Width="663" Height="661">
+            <TextBlock x:Name="informationMessage_step05" FontWeight="Bold" FontSize="22" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,0,400,0"/>
+            <TextBlock x:Name="GmatrixMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,30,0,0"/>
+            <TextBlock x:Name="Gmatrix_Text" FontWeight="Bold" TextWrapping="Wrap" Margin="0,15,0,0"/>
+        </StackPanel>
+
+        <Button x:Name="nextStepButton_step05" Click="NextStepButton_step05_click" FontSize="20" Margin="841,687,24,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        Следующий шаг »
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="help_step05" Click="Help_step05_click" Margin="864,10,15,695">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="18">
+        Справка
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="previousStepButton_step1" Click="PreviousStepButton_step1_click" FontSize="20" Margin="308,687,557,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        « Предыдущий шаг
+            </TextBlock>
+        </Button>
+
+        <StackPanel x:Name="step1_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="312,10,0,0" Width="663" Height="661">
+            <TextBlock x:Name="informationMessage_step1" FontWeight="Bold" FontSize="22" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,0,150,0"/>
+            <TextBlock x:Name="sentInfoWord_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,30,0,0"/>
+            <TextBlock x:Name="encodingStageMessage" FontWeight="Bold" FontSize="18" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,30,0,0"/>
+            <TextBlock x:Name="encoding_informationMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="precodedMessage_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,20,0,0"/>
+            <TextBlock x:Name="codedMessage_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,20,0,0"/>
+            <TextBlock x:Name="encoding_finalInformationMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,30,0,0"/>
+        </StackPanel>
+
+        <Button x:Name="nextStepButton_step1" Click="NextStepButton_step1_click" FontSize="20" Margin="841,687,24,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        Следующий шаг »
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="help_step1" Click="Help_step1_click" Margin="864,10,15,695">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="18">
+        Справка
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="previousStepButton_step2" Click="PreviousStepButton_step2_click" FontSize="20" Margin="308,687,557,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        « Предыдущий шаг
+            </TextBlock>
+        </Button>
+
+        <StackPanel x:Name="step2_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="312,10,0,0" Width="663" Height="686">
+            <TextBlock x:Name="informationMessage_step2" FontWeight="Bold" FontSize="22" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,0,150,0"/>
+            <TextBlock x:Name="modulatingStageMessage" FontWeight="Bold" FontSize="18" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,30,0,0"/>
+            <TextBlock x:Name="firstStep_modulatingStageMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="secondStep_modulatingStageMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <oxy:PlotView x:Name="constellationDiagram" Width="370" Height="370" Margin="0,10,50,0"/>
+        </StackPanel>
+
+        <Button x:Name="nextStepButton_step2" Click="NextStepButton_step2_click" FontSize="20" Margin="841,687,24,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        Следующий шаг »
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="help_step2" Click="Help_step2_click" Margin="864,10,15,695">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="18">
+        Справка
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="previousStepButton_step3" Click="PreviousStepButton_step3_click" FontSize="20" Margin="308,687,557,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        « Предыдущий шаг
+            </TextBlock>
+        </Button>
+
+        <StackPanel x:Name="step3_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="312,10,0,0" Width="663" Height="661">
+            <TextBlock x:Name="informationMessage_step3" FontWeight="Bold" FontSize="22" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,0,150,0"/>
+            <TextBlock x:Name="thirdStep_modulatingStageMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,30,0,0"/>
+            <TextBlock x:Name="complexPointsArray" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="fourthStep_modulatingStageMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="modulatedMessage_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="modulating_finalInformationMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,30,0,0"/>
+        </StackPanel>
+
+        <Button x:Name="nextStepButton_step3" Click="NextStepButton_step3_click" FontSize="20" Margin="841,687,24,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        Следующий шаг »
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="help_step3" Click="Help_step3_click" Margin="864,10,15,695">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="18">
+        Справка
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="previousStepButton_step4" Click="PreviousStepButton_step4_click" FontSize="20" Margin="308,687,557,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        « Предыдущий шаг
+            </TextBlock>
+        </Button>
+
+        <StackPanel x:Name="step4_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="312,10,0,0" Width="663" Height="661">
+            <TextBlock x:Name="informationMessage_step4" FontWeight="Bold" FontSize="22" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,0,150,0"/>
+            <TextBlock x:Name="noiseExposureMessage" FontWeight="Bold" FontSize="18" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,30,0,0"/>
+            <TextBlock x:Name="firstStep_noiseExposure" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="noise_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="secondStep_noiseExposure" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="complexNoisyMessage_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="noiseExposure_finalInformationMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,30,0,0"/>
+        </StackPanel>
+
+        <Button x:Name="nextStepButton_step4" Click="NextStepButton_step4_click" FontSize="20" Margin="841,687,24,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        Следующий шаг »
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="help_step4" Click="Help_step4_click" Margin="864,10,15,695">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="18">
+        Справка
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="previousStepButton_step5" Click="PreviousStepButton_step5_click" FontSize="20" Margin="308,687,557,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        « Предыдущий шаг
+            </TextBlock>
+        </Button>
+
+        <StackPanel x:Name="step5_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="312,10,0,0" Width="663" Height="661">
+            <TextBlock x:Name="informationMessage_step5" FontWeight="Bold" FontSize="22" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,0,150,0"/>
+            <TextBlock x:Name="demodulatingStageMessage" FontWeight="Bold" FontSize="18" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,30,0,0"/>
+            <TextBlock x:Name="firstStep_demodulatingStageMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="secondStep_demodulatingStageMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="a_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="b_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <Button x:Name="nextStepButton_step5" Click="NextStepButton_step5_click" FontSize="20" Margin="841,687,24,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        Следующий шаг »
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="help_step5" Click="Help_step5_click" Margin="864,10,15,695">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="18">
+        Справка
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="previousStepButton_step6" Click="PreviousStepButton_step6_click" FontSize="20" Margin="308,687,557,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        « Предыдущий шаг
+            </TextBlock>
+        </Button>
+
+        <StackPanel x:Name="step6_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="312,10,0,0" Width="663" Height="661">
+            <TextBlock x:Name="informationMessage_step6" FontWeight="Bold" FontSize="22" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,0,150,0"/>
+            <TextBlock x:Name="thirdStep_demodulatingStageMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,30,0,0"/>
+            <TextBlock x:Name="rightDemodulatedMessage_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="demodulatingStageMessage_preFinalInformationMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,30,0,0"/>
+            <TextBlock x:Name="comparisonOfCodedMessageAndRightDemodulatedMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,30,0,0"/>
+            <TextBlock x:Name="codedMessage_Text_forComparison" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="rightDemodulatedMessage_Text_forComparison" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="resultOfComparisonCodedMessageAndRightDemodulatedMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <Button x:Name="nextStepButton_step6" Click="NextStepButton_step6_click" FontSize="20" Margin="841,687,24,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        Следующий шаг »
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="help_step6" Click="Help_step6_click" Margin="864,10,15,695">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="18">
+        Справка
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="previousStepButton_step7" Click="PreviousStepButton_step7_click" FontSize="20" Margin="308,687,557,23">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="16">
+        « Предыдущий шаг
+            </TextBlock>
+        </Button>
+
+        <StackPanel x:Name="step7_StackPanel" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="312,10,0,0" Width="663" Height="661">
+            <TextBlock x:Name="informationMessage_step7" FontWeight="Bold" FontSize="22" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,0,150,0"/>
+            <TextBlock x:Name="decodingStageMessage" FontWeight="Bold" FontSize="18" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,30,0,0"/>
+            <TextBlock x:Name="firstStep_decodingStageMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="secondStep_decodingStageMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="decodedMessage_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="thirdStep_decodingStageMessage" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="receivedInfoWord_Text" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="comparisonOfSentInfoWordAndReceivedInfoWord" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,30,0,0"/>
+            <TextBlock x:Name="sentInfoWord_Text_forComparison" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="receivedInfoWord_Text_forComparison" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,0"/>
+            <TextBlock x:Name="resultOfComparisonSentInfoWordAndReceivedInfoWord" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" TextDecorations="Underline" Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <Button x:Name="help_step7" Click="Help_step7_click" Margin="864,10,15,695">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="18">
+        Справка
+            </TextBlock>
+        </Button>
+        <!-- -->
+    </Grid>
+</Window>
