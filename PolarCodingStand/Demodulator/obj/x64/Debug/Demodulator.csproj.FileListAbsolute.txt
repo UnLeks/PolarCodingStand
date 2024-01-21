@@ -1,0 +1,6 @@
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Demodulator\bin\x64\Debug\Demodulator.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Demodulator\bin\x64\Debug\Demodulator.pdb
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Demodulator\obj\x64\Debug\Demodulator.csproj.AssemblyReference.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Demodulator\obj\x64\Debug\Demodulator.csproj.CoreCompileInputs.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Demodulator\obj\x64\Debug\Demodulator.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Demodulator\obj\x64\Debug\Demodulator.pdb
