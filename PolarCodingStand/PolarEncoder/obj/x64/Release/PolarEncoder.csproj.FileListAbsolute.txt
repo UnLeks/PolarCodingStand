@@ -1,0 +1,6 @@
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\PolarEncoder\bin\x64\Release\PolarEncoder.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\PolarEncoder\bin\x64\Release\PolarEncoder.pdb
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\PolarEncoder\obj\x64\Release\PolarEncoder.csproj.AssemblyReference.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\PolarEncoder\obj\x64\Release\PolarEncoder.csproj.CoreCompileInputs.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\PolarEncoder\obj\x64\Release\PolarEncoder.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\PolarEncoder\obj\x64\Release\PolarEncoder.pdb
