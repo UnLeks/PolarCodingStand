@@ -1,0 +1,11 @@
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveDecoder\bin\x64\Release\RecursiveDecoder.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveDecoder\bin\x64\Release\RecursiveDecoder.pdb
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveDecoder\bin\x64\Release\RecursiveFunction.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveDecoder\bin\x64\Release\Gmatrix.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveDecoder\bin\x64\Release\RecursiveFunction.pdb
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveDecoder\bin\x64\Release\Gmatrix.pdb
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveDecoder\obj\x64\Release\RecursiveDecoder.csproj.AssemblyReference.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveDecoder\obj\x64\Release\RecursiveDecoder.csproj.CoreCompileInputs.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveDecoder\obj\x64\Release\RecursiveDecoder.csproj.CopyComplete
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveDecoder\obj\x64\Release\RecursiveDecoder.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveDecoder\obj\x64\Release\RecursiveDecoder.pdb
