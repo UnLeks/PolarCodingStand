@@ -1,0 +1,6 @@
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Constellation\bin\x64\Debug\Constellation.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Constellation\bin\x64\Debug\Constellation.pdb
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Constellation\obj\x64\Debug\Constellation.csproj.AssemblyReference.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Constellation\obj\x64\Debug\Constellation.csproj.CoreCompileInputs.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Constellation\obj\x64\Debug\Constellation.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Constellation\obj\x64\Debug\Constellation.pdb
