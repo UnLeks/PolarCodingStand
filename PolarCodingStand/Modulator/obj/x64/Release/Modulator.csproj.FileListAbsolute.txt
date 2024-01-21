@@ -1,0 +1,6 @@
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Modulator\bin\x64\Release\Modulator.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Modulator\bin\x64\Release\Modulator.pdb
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Modulator\obj\x64\Release\Modulator.csproj.AssemblyReference.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Modulator\obj\x64\Release\Modulator.csproj.CoreCompileInputs.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Modulator\obj\x64\Release\Modulator.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Modulator\obj\x64\Release\Modulator.pdb
