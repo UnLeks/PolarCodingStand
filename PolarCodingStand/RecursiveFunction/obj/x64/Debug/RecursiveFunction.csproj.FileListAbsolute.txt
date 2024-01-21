@@ -1,0 +1,9 @@
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveFunction\bin\x64\Debug\RecursiveFunction.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveFunction\bin\x64\Debug\RecursiveFunction.pdb
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveFunction\bin\x64\Debug\Gmatrix.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveFunction\bin\x64\Debug\Gmatrix.pdb
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveFunction\obj\x64\Debug\RecursiveFunction.csproj.AssemblyReference.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveFunction\obj\x64\Debug\RecursiveFunction.csproj.CoreCompileInputs.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveFunction\obj\x64\Debug\RecursiveFunction.csproj.CopyComplete
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveFunction\obj\x64\Debug\RecursiveFunction.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\RecursiveFunction\obj\x64\Debug\RecursiveFunction.pdb
