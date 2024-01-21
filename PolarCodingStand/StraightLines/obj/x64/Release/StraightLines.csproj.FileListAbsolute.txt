@@ -1,0 +1,6 @@
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\StraightLines\bin\x64\Release\StraightLines.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\StraightLines\bin\x64\Release\StraightLines.pdb
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\StraightLines\obj\x64\Release\StraightLines.csproj.AssemblyReference.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\StraightLines\obj\x64\Release\StraightLines.csproj.CoreCompileInputs.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\StraightLines\obj\x64\Release\StraightLines.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\StraightLines\obj\x64\Release\StraightLines.pdb
