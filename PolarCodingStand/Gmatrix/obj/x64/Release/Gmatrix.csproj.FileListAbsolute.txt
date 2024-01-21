@@ -1,0 +1,6 @@
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Gmatrix\bin\x64\Release\Gmatrix.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Gmatrix\bin\x64\Release\Gmatrix.pdb
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Gmatrix\obj\x64\Release\Gmatrix.csproj.AssemblyReference.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Gmatrix\obj\x64\Release\Gmatrix.csproj.CoreCompileInputs.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Gmatrix\obj\x64\Release\Gmatrix.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\Gmatrix\obj\x64\Release\Gmatrix.pdb
