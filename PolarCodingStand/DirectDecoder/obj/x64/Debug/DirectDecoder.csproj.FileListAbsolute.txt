@@ -1,0 +1,6 @@
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\DirectDecoder\bin\x64\Debug\DirectDecoder.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\DirectDecoder\bin\x64\Debug\DirectDecoder.pdb
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\DirectDecoder\obj\x64\Debug\DirectDecoder.csproj.AssemblyReference.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\DirectDecoder\obj\x64\Debug\DirectDecoder.csproj.CoreCompileInputs.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\DirectDecoder\obj\x64\Debug\DirectDecoder.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\DirectDecoder\obj\x64\Debug\DirectDecoder.pdb
