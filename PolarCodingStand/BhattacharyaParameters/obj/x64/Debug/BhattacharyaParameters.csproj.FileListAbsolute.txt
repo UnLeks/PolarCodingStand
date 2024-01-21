@@ -1,0 +1,9 @@
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\BhattacharyaParameters\bin\x64\Debug\BhattacharyaParameters.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\BhattacharyaParameters\bin\x64\Debug\BhattacharyaParameters.pdb
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\BhattacharyaParameters\bin\x64\Debug\Gmatrix.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\BhattacharyaParameters\bin\x64\Debug\Gmatrix.pdb
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\BhattacharyaParameters\obj\x64\Debug\BhattacharyaParameters.csproj.AssemblyReference.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\BhattacharyaParameters\obj\x64\Debug\BhattacharyaParameters.csproj.CoreCompileInputs.cache
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\BhattacharyaParameters\obj\x64\Debug\BhattacharyaParameters.csproj.CopyComplete
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\BhattacharyaParameters\obj\x64\Debug\BhattacharyaParameters.dll
+C:\Users\sidni\Documents\Visual Studio 2022\PolarCodingStand\BhattacharyaParameters\obj\x64\Debug\BhattacharyaParameters.pdb
